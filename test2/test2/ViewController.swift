@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var testLabel: UILabel!
     
@@ -16,34 +16,27 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         //感知する方向を配列に入れる
         let derectionList:[UISwipeGestureRecognizer.Direction] = [.up, .down, .right, .left]
-        
-        for direction in derectionList {
-            let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: Selector(swipeLabel))
-            swipeRecognizer.direction = direction
-            //uiimageにスワイプの感知を追加
-            animationView.addGestureRecognizer(swipeRecognizer)
+       
+        let swipeRecognizer1 = UISwipeGestureRecognizer(target: self, action: #selector(swipeLabel(sender:)))
+        swipeRecognizer1.direction = .up
+        //これをしないとエラー出ないけど反応しない
+        animationView.isUserInteractionEnabled = true
+        //uiimageにスワイプの感知を追加
+        animationView.addGestureRecognizer(swipeRecognizer1)
             
         }
-    }
+    
 
     
     @IBOutlet weak var animationView: UIImageView!
-    
-    func swipeLabel(sender:UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case UISwipeGestureRecognizer.Direction.up:
-            testLabel.text = "上"; print("up")
-        case UISwipeGestureRecognizer.Direction.down:
-            testLabel.text = "下"; print("down")
-        case UISwipeGestureRecognizer.Direction.right:
-            testLabel.text = "右"; print("right")
-        case UISwipeGestureRecognizer.Direction.left:
-            testLabel.text = "左"; print("left")
-        default:
-            return
+    //スワイプされたときに動く関数
+    @objc func swipeLabel(sender:UISwipeGestureRecognizer) {
+        testLabel.text = "上"
+        print("up")
+
         }
         
-    }
-    
 }
+    
+
 

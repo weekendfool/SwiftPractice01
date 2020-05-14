@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var moveImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +35,38 @@ class ViewController: UIViewController {
     @objc func swipeLabel(sender:UISwipeGestureRecognizer) {
         switch sender.direction {
         case UISwipeGestureRecognizer.Direction.up:
-            testLabel.text = "上"
+            testLabel.text = "上"; makeView()
         case UISwipeGestureRecognizer.Direction.right:
-            testLabel.text = "右"
+            testLabel.text = "右"; makeView()
         case UISwipeGestureRecognizer.Direction.down:
-            testLabel.text = "下"
+            testLabel.text = "下"; makeView()
         case UISwipeGestureRecognizer.Direction.left:
-            testLabel.text = "左"
+            testLabel.text = "左"; makeView()
         default:
             return
         }
 
         }
         
+    func makeView() {
+        //UIImageのインスタンス作成
+        let moveImage:UIImage = UIImage(named: "same2")!
+        //UIImageViewの初期化とmoveImageの代入
+        let moveImageView = UIImageView(image: moveImage)
+        //画像のサイズを設定
+        let rect:CGRect = CGRect(x: 119, y: 393, width: 110, height: 110)
+        moveImageView.frame = rect
+        //インスタンスをviewに追加
+        self.view.addSubview(moveImageView)
+        
+        
+    }
+    
+    func viewAnimateion(moveImageView:UIImageView) {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .allowAnimatedContent, animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+        }
+        
+    }
 }
     
 

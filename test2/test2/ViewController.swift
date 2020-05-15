@@ -37,8 +37,9 @@ class ViewController: UIViewController {
         }, completion: nil)
  */
         let image = makeView()
-        viewAnimateion(moveImageView: image)
 //        image.removeFromSuperview()
+//        viewAnimateion(moveImageView: image)
+//
     }
     
     
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
 
         }
         
-    func makeView() -> UIImageView {
+    func makeView() {
         //UIImageのインスタンス作成
         let moveImage:UIImage = UIImage(named: "same2")!
         //UIImageViewの初期化とmoveImageの代入
@@ -71,14 +72,21 @@ class ViewController: UIViewController {
         //インスタンスをviewに追加
         self.view.addSubview(moveImageView)
         
-        return moveImageView
+        moveImageView.center = CGPoint(x: 200, y: 446)
+
+               UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseIn, animations: {
+                   moveImageView.center.y += 100
+                   
+               }) { (completed) in
+                   moveImageView.removeFromSuperview()
+               }
 
     }
     
     func viewAnimateion(moveImageView:UIImageView) {
         moveImageView.center = CGPoint(x: 200, y: 446)
 
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: .allowAnimatedContent, animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseIn, animations: {
             moveImageView.center.y += 100
             
         }) { (completed) in

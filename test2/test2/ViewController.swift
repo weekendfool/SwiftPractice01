@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var testLabel: UILabel!
-    @IBOutlet weak var moveImageView: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,19 @@ class ViewController: UIViewController {
         }
         }
     
-
+    @IBAction func action(_ sender: Any) {
+        /*
+        self.animationView.center = CGPoint(x: 200, y: 446)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .allowUserInteraction, animations: {
+            self.animationView.center.y += 100
+            
+        }, completion: nil)
+ */
+        let image = makeView()
+        viewAnimateion(moveImageView: image)
+//        image.removeFromSuperview()
+    }
+    
     
     @IBOutlet weak var animationView: UIImageView!
     //スワイプされたときに動く関数
@@ -48,7 +60,7 @@ class ViewController: UIViewController {
 
         }
         
-    func makeView() {
+    func makeView() -> UIImageView {
         //UIImageのインスタンス作成
         let moveImage:UIImage = UIImage(named: "same2")!
         //UIImageViewの初期化とmoveImageの代入
@@ -59,14 +71,22 @@ class ViewController: UIViewController {
         //インスタンスをviewに追加
         self.view.addSubview(moveImageView)
         
-        
+        return moveImageView
+
     }
     
     func viewAnimateion(moveImageView:UIImageView) {
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: .allowAnimatedContent, animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+        moveImageView.center = CGPoint(x: 200, y: 446)
+
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .allowAnimatedContent, animations: {
+            moveImageView.center.y += 100
+            
+        }) { (completed) in
+            moveImageView.removeFromSuperview()
+        }
         }
         
-    }
+    
 }
     
 

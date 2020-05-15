@@ -10,6 +10,8 @@ import UIKit
 
 class Gamge {
     
+    
+    
     //ゲームのviewを表示する
     func DisplayView() -> Any {
         var imageFlag = false
@@ -25,14 +27,15 @@ class Gamge {
             //imageFlagをtrueにする
             imageFlag = true
         }
-        
         return gameImage
     }
     
     //正解不正解を判断する
-    func judge() {
+    func judge(selectDirection:Int) -> Bool {
         //imageのインスタンス作成
         let image = Image()
+        //正解のときtrueの変数
+        var judgeFlag:Bool
         //recordインスタンスを作成
         let number = Record()
         
@@ -46,65 +49,72 @@ class Gamge {
             enumNumber = Image.problemBananaImage.bananaUp.rawValue
             print(enumNumber)
         case (0, 1):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemBananaImage.bananaRight.rawValue
             print(enumNumber)
         case (0, 2):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemBananaImage.bananaDown.rawValue
             print(enumNumber)
         case (0, 3):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemBananaImage.bananaLeft.rawValue
             print(enumNumber)
         case (1, 0):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemCadaverImage.cadaverUp.rawValue
             print(enumNumber)
         case (1, 1):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemCadaverImage.cadaverRight.rawValue
             print(enumNumber)
         case (1, 2):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemCadaverImage.cadaverDown.rawValue
             print(enumNumber)
         case (1, 3):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemCadaverImage.cadaverLeft.rawValue
             print(enumNumber)
         case (2, 0):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemDraculaImage.draculaUp.rawValue
             print(enumNumber)
         case (2, 1):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemDraculaImage.draculaRight.rawValue
             print(enumNumber)
         case (2, 2):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemDraculaImage.draculaDown.rawValue
             print(enumNumber)
         case (2, 3):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemDraculaImage.draculaLeft.rawValue
             print(enumNumber)
         case (3, 0):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemMarkerImage.markerUp.rawValue
             print(enumNumber)
         case (3, 1):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemMarkerImage.markerRight.rawValue
             print(enumNumber)
         case (3, 2):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemMarkerImage.markerDown.rawValue
             print(enumNumber)
         case (3, 3):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemMarkerImage.markerLeft.rawValue
             print(enumNumber)
         case (4, 0):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemShowManImage.showManUp.rawValue
             print(enumNumber)
         case (4, 1):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemShowManImage.showManRight.rawValue
             print(enumNumber)
         case (4, 2):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemShowManImage.showManDown.rawValue
             print(enumNumber)
         case (4, 3):
-            enumNumber = Image.problemBananaImage.bananaUp.rawValue
+            enumNumber = Image.problemShowManImage.showManLeft.rawValue
             print(enumNumber)
         default:
-            return
+            return false
         }
+        //選んだ答えと正解を比較
+        if enumNumber == selectDirection {
+            judgeFlag = true
+        } else {
+            judgeFlag = false
+        }
+        return judgeFlag
     }
     //スコアのアラートを表示する
 }

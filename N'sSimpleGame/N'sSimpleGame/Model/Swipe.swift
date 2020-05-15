@@ -9,6 +9,15 @@
 import UIKit
 
 class SwipeAction: UIViewController {
+    
+    //スワイプの方向の列挙体を作成
+    enum swipeActionDirection: Int {
+        case up = 0
+        case right = 1
+        case down = 2
+        case left = 3
+    }
+    
     //スワイプアクション用のスワイプリコグナイザーを作る
     
     //四方向のスワイプ検知の実装
@@ -38,7 +47,7 @@ class SwipeAction: UIViewController {
         }
     }
     
-    func moveImageView(direction:String) {
+    func moveImageView(direction:String) -> Int {
         //UIImageのインスタンス作成
         let moveImage:UIImage = UIImage(named: "onlyHead")!
         //UIImageViewの初期化とmoveImageの代入
@@ -50,36 +59,44 @@ class SwipeAction: UIViewController {
         view.addSubview(moveImageView)
         
         moveImageView.center = CGPoint(x: 200, y: 446)
+        //選んだ方向を格納する変数
+        var selectDirection = 5
 
         switch direction {
         case "up":
             //imageviewを作成してスワイプされた方向にアニメーションさせる
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
                 moveImageView.center.y -= 100
+                selectDirection = swipeActionDirection.up.rawValue
             }) { (completed) in
                 moveImageView.removeFromSuperview()
             }
         case "right":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
             moveImageView.center.x += 100
+            selectDirection = swipeActionDirection.right.rawValue
             }) { (completed) in
             moveImageView.removeFromSuperview()
             }
         case "down":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
             moveImageView.center.y += 100
+            selectDirection = swipeActionDirection.down.rawValue
             }) { (completed) in
             moveImageView.removeFromSuperview()
             }
         case "left":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
             moveImageView.center.x -= 100
+                selectDirection = swipeActionDirection.left.rawValue
             }) { (completed) in
             moveImageView.removeFromSuperview()
             }
         default:
-            return
+            return 6
         }
+        
+        return selectDirection
     }
     
 }

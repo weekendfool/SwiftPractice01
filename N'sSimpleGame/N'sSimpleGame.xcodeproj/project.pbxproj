@@ -19,7 +19,7 @@
 		8CAE09762467EAA700CB54FA /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAE09752467EAA700CB54FA /* ResultViewController.swift */; };
 		8CAE09782467EB5000CB54FA /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAE09772467EB5000CB54FA /* Animation.swift */; };
 		8CD9805E2468404A0010333E /* Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9805D2468404A0010333E /* Swipe.swift */; };
-		8CD98060246C11390010333E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9805F246C11390010333E /* File.swift */; };
+		8CD98060246C11390010333E /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9805F246C11390010333E /* Record.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		8CAE09752467EAA700CB54FA /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		8CAE09772467EB5000CB54FA /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		8CD9805D2468404A0010333E /* Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipe.swift; sourceTree = "<group>"; };
-		8CD9805F246C11390010333E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		8CD9805F246C11390010333E /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 				8CAE096F2467EA4100CB54FA /* Image.swift */,
 				8CAE09772467EB5000CB54FA /* Animation.swift */,
 				8CD9805D2468404A0010333E /* Swipe.swift */,
-				8CD9805F246C11390010333E /* File.swift */,
+				8CD9805F246C11390010333E /* Record.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 				8CAE09572467D3F900CB54FA /* AppDelegate.swift in Sources */,
 				8CAE09782467EB5000CB54FA /* Animation.swift in Sources */,
 				8CAE09762467EAA700CB54FA /* ResultViewController.swift in Sources */,
-				8CD98060246C11390010333E /* File.swift in Sources */,
+				8CD98060246C11390010333E /* Record.swift in Sources */,
 				8CAE09592467D3F900CB54FA /* SceneDelegate.swift in Sources */,
 				8CAE096E2467EA3100CB54FA /* CountTimer.swift in Sources */,
 				8CAE09742467EA8500CB54FA /* GameViewController.swift in Sources */,

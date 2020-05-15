@@ -52,7 +52,7 @@ class Image {
     //多次元配列で問題用のピクチャを管理
     var problemImage:[[String]] = [["bananaUp", "bananaRight", "bananaDown", "bananaLeft"], ["cadaverUp", "cadaverRight", "cadaverDown", "cadaverLeft"], ["draculaUp", "draculaRight", "draculaDown", "draculaLeft"], ["markerUp", "markerRight", "markerDown", "markerLeft"], ["showManUp", "showManRight", "showManDown", "showManLeft"]]
     //imageの選択
-    func selectProblemImage() -> String {
+    func selectProblemImage() -> (selectImageName:String, imageNumber:Int, imageDirectionNumber:Int) {
         //ランダム関数でどのピクチャか選択(全5種)
         let imageNumber = Int.random(in: 0...4)
         //ランダム関数でピクチャの向きを選択(全4種)
@@ -60,7 +60,7 @@ class Image {
         //選ばれたImageを代入
         let selectImageName = problemImage[imageNumber][imageDirectionNumber]
         
-        return selectImageName
+        return (selectImageName, imageNumber, imageDirectionNumber)
     }
     
     

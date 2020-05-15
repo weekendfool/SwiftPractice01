@@ -9,7 +9,8 @@
 import UIKit
 
 class Gamge {
-    
+    var numberOfCorrectAnswers = 0
+    var numberOfIncorrectAnswers = 0
     //スタートする処理
     func startGame() -> (numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int, startFlag:Bool){
         //記録用のインスタンスを作成
@@ -130,14 +131,14 @@ class Gamge {
         return judgeFlag
     }
     //正誤判定から点数を上げる
-    func countUp(judgeFlag:Bool, numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int, startFlag:Bool) {
+    func countUp(judgeFlag:Bool, InputNumberOfCorrectAnswers:Int, InputNumberOfIncorrectAnswers:Int, startFlag:Bool) -> (numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int ) {
         //記録用のインスタンスを作成
         var record = Record()
         var startFlag = startFlag
         //最初だけ正解数と不正解数を呼び出す
         if startFlag {
-            var numberOfCorrectAnswers = numberOfCorrectAnswers
-            var numberOfIncorrectAnswers = numberOfIncorrectAnswers
+            numberOfCorrectAnswers = InputNumberOfCorrectAnswers
+            numberOfIncorrectAnswers = InputNumberOfIncorrectAnswers
             //1回目の検知が終わったらフラグをオフに
             startFlag = false
         }
@@ -147,6 +148,18 @@ class Gamge {
         } else {
             numberOfIncorrectAnswers += 1
         }
+        return (numberOfCorrectAnswers, numberOfIncorrectAnswers)
     }
     //スコアのアラートを表示する
+    func finishGame(numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int) {
+        var score = Record()
+        //正解数と不正解数を記録
+        UserDefaults.standard.set(numberOfCorrectAnswers, forKey: "numberOfCorrectAnswers")
+        UserDefaults.standard.set(numberOfIncorrectAnswers, forKey: "numberOfIncorrectAnswers")
+        //スコアを算出(正解数*10*正解数/（問題数）)
+        let doubleScore = numberOfCorrectAnswers * 10 * numberOfCorrectAnswers / (numberOfCorrectAnswers + numberOfIncorrectAnswers)
+        let intScore = Int(doubleScore)
+        //スコアを記録
+        score.recordScore(score: intScore)
+    }
 }

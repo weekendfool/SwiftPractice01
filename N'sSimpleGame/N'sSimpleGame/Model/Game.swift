@@ -10,7 +10,20 @@ import UIKit
 
 class Gamge {
     
-    
+    //スタートする処理
+    func startGame() -> (numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int, startFlag:Bool){
+        //記録用のインスタンスを作成
+        let record = Record()
+        //初期化
+        record.resetScore()
+        var numberOfCorrectAnswers = UserDefaults.standard.integer(forKey: "numberOfCorrectAnswers")
+        //不正解数の変数
+        var numberOfIncorrectAnswers = UserDefaults.standard.integer(forKey: "numberOfIncorrectAnswers")
+        //スタート1回目のフラグ
+        var startFlag = true
+        
+        return (numberOfIncorrectAnswers, numberOfIncorrectAnswers, startFlag)
+    }
     
     //ゲームのviewを表示する
     func DisplayView() -> Any {
@@ -115,6 +128,25 @@ class Gamge {
             judgeFlag = false
         }
         return judgeFlag
+    }
+    //正誤判定から点数を上げる
+    func countUp(judgeFlag:Bool, numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int, startFlag:Bool) {
+        //記録用のインスタンスを作成
+        var record = Record()
+        var startFlag = startFlag
+        //最初だけ正解数と不正解数を呼び出す
+        if startFlag {
+            var numberOfCorrectAnswers = numberOfCorrectAnswers
+            var numberOfIncorrectAnswers = numberOfIncorrectAnswers
+            //1回目の検知が終わったらフラグをオフに
+            startFlag = false
+        }
+        
+        if judgeFlag {
+            numberOfCorrectAnswers += 1
+        } else {
+            numberOfIncorrectAnswers += 1
+        }
     }
     //スコアのアラートを表示する
 }

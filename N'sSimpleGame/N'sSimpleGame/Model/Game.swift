@@ -17,13 +17,13 @@ class Gamge: UIViewController {
         let record = Record()
         //初期化
         record.resetScore()
-        var numberOfCorrectAnswers = UserDefaults.standard.integer(forKey: "numberOfCorrectAnswers")
+        let numberOfCorrectAnswers = UserDefaults.standard.integer(forKey: "numberOfCorrectAnswers")
         //不正解数の変数
-        var numberOfIncorrectAnswers = UserDefaults.standard.integer(forKey: "numberOfIncorrectAnswers")
+        let numberOfIncorrectAnswers = UserDefaults.standard.integer(forKey: "numberOfIncorrectAnswers")
         //スタート1回目のフラグ
         var startFlag = true
         
-        return (numberOfIncorrectAnswers, numberOfIncorrectAnswers, startFlag)
+        return (numberOfCorrectAnswers, numberOfIncorrectAnswers, startFlag)
     }
     
     //ゲームのviewを表示する
@@ -53,8 +53,8 @@ class Gamge: UIViewController {
         //recordインスタンスを作成
         let number = Record()
         
-        var imageNumber = image.selectProblemImage().imageNumber
-        var imageDirectionNumber = image.selectProblemImage().imageDirectionNumber
+        let imageNumber = image.selectProblemImage().imageNumber
+        let imageDirectionNumber = image.selectProblemImage().imageDirectionNumber
         //どの列挙体を使用するかの数字
         var enumNumber = 6
         //問題の正解を格納する
@@ -152,7 +152,7 @@ class Gamge: UIViewController {
     }
     //スコアを記録する
     func finishGame(numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int) -> Int {
-        var score = Record()
+        let score = Record()
         //正解数と不正解数を記録
         UserDefaults.standard.set(numberOfCorrectAnswers, forKey: "numberOfCorrectAnswers")
         UserDefaults.standard.set(numberOfIncorrectAnswers, forKey: "numberOfIncorrectAnswers")
@@ -164,9 +164,22 @@ class Gamge: UIViewController {
         
         return intScore
     }
+    //最初のアラートを表示する
+    func upStartAlert() {
+        //アラートのインスタンス生成
+        let alertController: UIAlertController
+        //アラートの基本骨子作成
+        alertController = UIAlertController(title: "ゲーム開始", message: "ボタンを押すと始まるよ", preferredStyle: .alert)
+        //アラートのアクションを追加
+        let alertAction:UIAlertAction = UIAlertAction(title: "Start", style: .default, handler: nil)
+        //アクションを追加
+        alertController.addAction(alertAction)
+        //アラートを表示
+        present(alertController, animated: true)
+    }
     
     //スコアのアラートを表示する
-    func upAlert(intScore:Int) {
+    func upFinishAlert(intScore:Int) {
         //アラートのインスタンス生成
         let alertController: UIAlertController
         //アラートの基本骨子作成

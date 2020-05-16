@@ -26,7 +26,7 @@ class SwipeAction: UIViewController {
         let directionList:[UISwipeGestureRecognizer.Direction] = [.up, .right, .down, .left]
         for direction in directionList {
             //スワイプアクションのインスタンス作成
-            let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeAndAnimation(sender:)))
+            let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SwipeAction.swipeAndAnimation(sender:)))
             swipeRecognizer.direction = direction
         }
     

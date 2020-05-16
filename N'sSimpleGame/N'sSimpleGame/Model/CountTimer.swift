@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CountTime {
+class CountTimer {
     //経過時間をカウントアップするための変数
     var countTimer = 0
     //設定時間の変数
@@ -18,7 +18,7 @@ class CountTime {
     
     func startTimer() {
         //タイマーを1秒おきに起動
-        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CountTime.doTimer), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CountTimer.doTimer), userInfo: nil, repeats: true)
     }
     //1秒毎の処理（設定時間を引数にする）
     @objc func doTimer(setTime:Int) -> Int{

@@ -79,7 +79,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8WW-on-9qH"/>
                     <connections>
-                        <segue destination="f42-gq-gfh" kind="presentation" modalPresentationStyle="fullScreen" id="VwK-mF-HSq"/>
+                        <segue destination="f42-gq-gfh" kind="presentation" identifier="goResultVC" modalPresentationStyle="fullScreen" id="VwK-mF-HSq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Kj-PS-1wO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

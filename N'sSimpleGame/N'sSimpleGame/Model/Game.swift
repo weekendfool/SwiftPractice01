@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Gamge {
+class Gamge: UIViewController {
     var numberOfCorrectAnswers = 0
     var numberOfIncorrectAnswers = 0
     //スタートする処理
@@ -151,7 +151,7 @@ class Gamge {
         return (numberOfCorrectAnswers, numberOfIncorrectAnswers)
     }
     //スコアを記録する
-    func finishGame(numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int) {
+    func finishGame(numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int) -> Int {
         var score = Record()
         //正解数と不正解数を記録
         UserDefaults.standard.set(numberOfCorrectAnswers, forKey: "numberOfCorrectAnswers")
@@ -161,6 +161,24 @@ class Gamge {
         let intScore = Int(doubleScore)
         //スコアを記録
         score.recordScore(score: intScore)
+        
+        return intScore
     }
+    
     //スコアのアラートを表示する
+    func upAlert(intScore:Int) {
+        //アラートのインスタンス生成
+        let alertController: UIAlertController
+        //アラートの基本骨子作成
+        alertController = UIAlertController(title: "終了", message: "得点：\(intScore)", preferredStyle: .alert)
+        //アラートのアクションを追加
+        let alertAction:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) in
+            //画面遷移の処理
+            self.performSegue(withIdentifier: "goResultVC", sender: nil)
+        }
+        //アクションを追加
+        alertController.addAction(alertAction)
+        //アラートを表示
+        present(alertController, animated: true)
+    }
 }

@@ -150,7 +150,7 @@ class Gamge {
         }
         return (numberOfCorrectAnswers, numberOfIncorrectAnswers)
     }
-    //スコアのアラートを表示する
+    //スコアを記録する
     func finishGame(numberOfCorrectAnswers:Int, numberOfIncorrectAnswers:Int) {
         var score = Record()
         //正解数と不正解数を記録
@@ -162,4 +162,5 @@ class Gamge {
         //スコアを記録
         score.recordScore(score: intScore)
     }
+    //スコアのアラートを表示する
 }

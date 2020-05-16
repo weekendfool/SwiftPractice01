@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //スワイプ検知の関数
         setSwipeAction()
-        moveImageView(direction: <#T##String#>)
+        
     }
     //問題のリスト
     var list:[String] = ["上", "右", "下", "左"]
@@ -44,6 +44,8 @@ class ViewController: UIViewController {
             //スワイプアクションのインスタンス作成
             let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeAndAnimation(sender:)))
             swipeRecognizer.direction = direction
+            targetImageView.isUserInteractionEnabled = true
+            targetImageView.addGestureRecognizer(swipeRecognizer)
         }
     
     }
@@ -51,13 +53,13 @@ class ViewController: UIViewController {
         //sender.directionの値に応じて条件分岐
         switch sender.direction {
         case UISwipeGestureRecognizer.Direction.up:
-            moveImageView(direction: "up")
+            moveImageView(direction: "up"); print("up")
         case UISwipeGestureRecognizer.Direction.right:
-            moveImageView(direction: "right")
+            moveImageView(direction: "right"); print("right")
         case UISwipeGestureRecognizer.Direction.down:
-            moveImageView(direction: "down")
+            moveImageView(direction: "down"); print("down")
         case UISwipeGestureRecognizer.Direction.left:
-            moveImageView(direction: "leht")
+            moveImageView(direction: "left"); print("left")
         default:
             return
         }
@@ -103,8 +105,8 @@ class ViewController: UIViewController {
             }
         case "left":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
-            moveImageView.center.x -= 100
-                selectDirection = swipeActionDirection.left.rawValue
+            moveImageView.center.x -= 200
+            selectDirection = swipeActionDirection.left.rawValue
             }) { (completed) in
             moveImageView.removeFromSuperview()
             }

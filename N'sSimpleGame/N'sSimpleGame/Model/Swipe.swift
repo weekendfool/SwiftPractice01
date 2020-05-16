@@ -41,7 +41,7 @@ class SwipeAction: UIViewController {
         case UISwipeGestureRecognizer.Direction.down:
             moveImageView(direction: "down")
         case UISwipeGestureRecognizer.Direction.left:
-            moveImageView(direction: "leht")
+            moveImageView(direction: "left")
         default:
             return
         }

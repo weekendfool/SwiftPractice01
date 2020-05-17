@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         return text
     }
     //回数制限
-    func doGame() {
+    func doGame() -> Int{
         let text = random()
         switch text {
         case "上":
@@ -50,9 +50,13 @@ class ViewController: UIViewController {
         case "左":
             testText = swipeActionDirection.left.rawValue
         default:
-            return
+            return 6
         }
         setSwipeAction()
+        return testText
+    }
+    func judge() {
+        
         if testText == num {
             score += 1
             print(score)
@@ -124,7 +128,8 @@ class ViewController: UIViewController {
                 moveImageView.removeFromSuperview()
                 self.flag = true
                 self.num = swipeActionDirection.up.rawValue
-                self.doGame()
+                var doGame = self.doGame()
+                self.judge()
                 self.finish(score: self.score)
             }
         case "right":
@@ -135,7 +140,8 @@ class ViewController: UIViewController {
             moveImageView.removeFromSuperview()
             self.flag = true
             self.num = swipeActionDirection.right.rawValue
-            self.doGame()
+            var doGame = self.doGame()
+                self.judge()
                 self.finish(score: self.score)
             }
         case "down":
@@ -146,8 +152,9 @@ class ViewController: UIViewController {
             moveImageView.removeFromSuperview()
             self.flag = true
             self.num = swipeActionDirection.down.rawValue
-            self.doGame()
-                self.finish(score: self.score)
+            var doGame = self.doGame()
+            self.judge()
+            self.finish(score: self.score)
             }
         case "left":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -157,7 +164,8 @@ class ViewController: UIViewController {
             moveImageView.removeFromSuperview()
             self.flag = true
             self.num = swipeActionDirection.left.rawValue
-            self.doGame()
+            var doGame = self.doGame()
+                self.judge()
                 self.finish(score: self.score)
             }
         default:

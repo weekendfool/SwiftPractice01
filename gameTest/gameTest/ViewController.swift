@@ -20,10 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //初期化
         problemLabel.text = ""
-        //スワイプ検知の関数
-        setSwipeAction()
-       
- 
+        
         doGame()
         
         
@@ -39,17 +36,15 @@ class ViewController: UIViewController {
     }
     //回数制限
     func doGame() {
-        var num = 0
-        print("3##########3")
-        while num <= 10 {
-            print("1!!!!!!!!!!!!!!!!!!!")
-            if flag == true {
-                random()
-                num += 1
-            } else {
-                print("$$$$$$")
-            }
+        if flag {
+            random()
+            flag = false
+            setSwipeAction()
+        } else {
+            print("no")
         }
+       
+        
     }
     //スワイプの方向の列挙体を作成
     enum swipeActionDirection: Int {
@@ -112,6 +107,8 @@ class ViewController: UIViewController {
             }) { (completed) in
                 moveImageView.removeFromSuperview()
                 self.flag = true
+                self.num += 1
+                self.doGame()
             }
         case "right":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -120,6 +117,7 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
+            self.num += 1
             }
         case "down":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -128,6 +126,7 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
+            self.num += 1
             }
         case "left":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -136,6 +135,7 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
+            self.num += 1
             }
         default:
             return 6

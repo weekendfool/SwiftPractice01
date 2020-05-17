@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var problemLabel: UILabel!
     
     var flag = true
-    var num = 0
+    var num = 6
+    var testText = 7
+    var score = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,24 +24,38 @@ class ViewController: UIViewController {
         problemLabel.text = ""
         
         doGame()
-        
+        finish(score: score)
         
     }
     //問題のリスト
     var list:[String] = ["上", "右", "下", "左"]
     
-    func random() {
+    func random() -> String {
         let number = Int.random(in: 0...3)
         let text = list[number]
         print(text)
         problemLabel.text = text
+        return text
     }
     //回数制限
     func doGame() {
-        if flag {
-            random()
-            flag = false
-            setSwipeAction()
+        let text = random()
+        switch text {
+        case "上":
+            let testText = swipeActionDirection.up.rawValue
+        case "右":
+            testText = swipeActionDirection.right.rawValue
+        case "下":
+            testText = swipeActionDirection.down.rawValue
+        case "左":
+            testText = swipeActionDirection.left.rawValue
+        default:
+            return
+        }
+        setSwipeAction()
+        if testText == num {
+            score += 1
+            print(score)
         } else {
             print("no")
         }
@@ -107,8 +123,9 @@ class ViewController: UIViewController {
             }) { (completed) in
                 moveImageView.removeFromSuperview()
                 self.flag = true
-                self.num += 1
+                self.num = swipeActionDirection.up.rawValue
                 self.doGame()
+                self.finish(score: self.score)
             }
         case "right":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -117,7 +134,9 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
-            self.num += 1
+            self.num = swipeActionDirection.right.rawValue
+            self.doGame()
+                self.finish(score: self.score)
             }
         case "down":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -126,7 +145,9 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
-            self.num += 1
+            self.num = swipeActionDirection.down.rawValue
+            self.doGame()
+                self.finish(score: self.score)
             }
         case "left":
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
@@ -135,13 +156,30 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
-            self.num += 1
+            self.num = swipeActionDirection.left.rawValue
+            self.doGame()
+                self.finish(score: self.score)
             }
         default:
             return 6
         }
         
         return selectDirection
+    }
+    
+    func finish(score:Int) {
+        if score == 10{
+            //アラートのインスタンス生成
+            let alertController: UIAlertController
+            //アラートの基本骨子作成
+            alertController = UIAlertController(title: "ゲーム終了", message: "10問正解", preferredStyle: .alert)
+            //アラートのアクションを追加
+            let alertAction:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            //アクションを追加
+            alertController.addAction(alertAction)
+            //アラートを表示
+            present(alertController, animated: true)
+        }
     }
     }
 

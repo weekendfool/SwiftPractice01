@@ -22,27 +22,44 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //初期化
         problemLabel.text = ""
-        
-        doGame()
+        random()
+        setSwipeAction()
+//        doGame()
         finish(score: score)
         
     }
     //問題のリスト
     var list:[String] = ["上", "右", "下", "左"]
     
-    func random() -> String {
+    func random() {
         let number = Int.random(in: 0...3)
         let text = list[number]
         print(text)
+        
         problemLabel.text = text
-        return text
+        switch text {
+               case "上":
+                   testText = swipeActionDirection.up.rawValue
+               case "右":
+                   testText = swipeActionDirection.right.rawValue
+               case "下":
+                   testText = swipeActionDirection.down.rawValue
+               case "左":
+                   testText = swipeActionDirection.left.rawValue
+               default:
+                   return
+               }
+        print(testText)
     }
+    /*
     //回数制限
     func doGame() -> Int{
         let text = random()
+        print("==========")
+        print(text)
         switch text {
         case "上":
-            let testText = swipeActionDirection.up.rawValue
+            testText = swipeActionDirection.up.rawValue
         case "右":
             testText = swipeActionDirection.right.rawValue
         case "下":
@@ -55,8 +72,9 @@ class ViewController: UIViewController {
         setSwipeAction()
         return testText
     }
+ */
     func judge() {
-        
+        print("判定実行")
         if testText == num {
             score += 1
             print(score)
@@ -91,16 +109,17 @@ class ViewController: UIViewController {
         //sender.directionの値に応じて条件分岐
         switch sender.direction {
         case UISwipeGestureRecognizer.Direction.up:
-            moveImageView(direction: "up"); print("up")
+            moveImageView(direction: "up"); print("up"); self.num = swipeActionDirection.up.rawValue
         case UISwipeGestureRecognizer.Direction.right:
-            moveImageView(direction: "right"); print("right")
+            moveImageView(direction: "right"); print("right"); self.num = swipeActionDirection.right.rawValue
         case UISwipeGestureRecognizer.Direction.down:
-            moveImageView(direction: "down"); print("down")
+            moveImageView(direction: "down"); print("down"); self.num = swipeActionDirection.down.rawValue
         case UISwipeGestureRecognizer.Direction.left:
-            moveImageView(direction: "left"); print("left")
+            moveImageView(direction: "left"); print("left"); self.num = swipeActionDirection.left.rawValue
         default:
             return
         }
+        self.judge()
     }
     
     func moveImageView(direction:String) -> Int {
@@ -125,11 +144,12 @@ class ViewController: UIViewController {
                 moveImageView.center.y -= 200
                 selectDirection = swipeActionDirection.up.rawValue
             }) { (completed) in
+                
                 moveImageView.removeFromSuperview()
                 self.flag = true
-                self.num = swipeActionDirection.up.rawValue
-                var doGame = self.doGame()
-                self.judge()
+//                self.num = swipeActionDirection.up.rawValue
+                self.random()
+//                self.judge()
                 self.finish(score: self.score)
             }
         case "right":
@@ -139,9 +159,9 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
-            self.num = swipeActionDirection.right.rawValue
-            var doGame = self.doGame()
-                self.judge()
+//            self.num = swipeActionDirection.right.rawValue
+                self.random()
+//                self.judge()
                 self.finish(score: self.score)
             }
         case "down":
@@ -151,9 +171,9 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
-            self.num = swipeActionDirection.down.rawValue
-            var doGame = self.doGame()
-            self.judge()
+//            self.num = swipeActionDirection.down.rawValue
+                self.random()
+//            self.judge()
             self.finish(score: self.score)
             }
         case "left":
@@ -163,9 +183,9 @@ class ViewController: UIViewController {
             }) { (completed) in
             moveImageView.removeFromSuperview()
             self.flag = true
-            self.num = swipeActionDirection.left.rawValue
-            var doGame = self.doGame()
-                self.judge()
+//            self.num = swipeActionDirection.left.rawValue
+                self.random()
+//                self.judge()
                 self.finish(score: self.score)
             }
         default:

@@ -21,30 +21,37 @@ class SwipeAction: UIViewController {
     //スワイプアクション用のスワイプリコグナイザーを作る
     
     //四方向のスワイプ検知の実装
-    func setSwipeAction() {
+    func setSwipeAction(targetImageView:UIImageView) {
         //スワイプを検知できる方向を四方に設定するためのリスト
         let directionList:[UISwipeGestureRecognizer.Direction] = [.up, .right, .down, .left]
         for direction in directionList {
             //スワイプアクションのインスタンス作成
             let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SwipeAction.swipeAndAnimation(sender:)))
             swipeRecognizer.direction = direction
+            //targetImageViewでジェスチャーを使用できるよう設定
+            targetImageView.isUserInteractionEnabled = true
+            //targetImageViewでスワイプリコグナイザーを追加
+            targetImageView.addGestureRecognizer(swipeRecognizer)
         }
     
     }
-    @objc func swipeAndAnimation(sender:UISwipeGestureRecognizer) {
+    @objc func swipeAndAnimation(sender:UISwipeGestureRecognizer) -> Int {
+        var judgeNumber = 6
         //sender.directionの値に応じて条件分岐
         switch sender.direction {
         case UISwipeGestureRecognizer.Direction.up:
-            moveImageView(direction: "up")
+            //どの方向を選んだのか伝達、         正誤判定に使う値を格納
+            moveImageView(direction: "up"); judgeNumber = swipeActionDirection.up.rawValue
         case UISwipeGestureRecognizer.Direction.right:
-            moveImageView(direction: "right")
+            moveImageView(direction: "right"); judgeNumber = swipeActionDirection.right.rawValue
         case UISwipeGestureRecognizer.Direction.down:
-            moveImageView(direction: "down")
+            moveImageView(direction: "down"); judgeNumber = swipeActionDirection.down.rawValue
         case UISwipeGestureRecognizer.Direction.left:
-            moveImageView(direction: "left")
+            moveImageView(direction: "left"); judgeNumber = swipeActionDirection.left.rawValue
         default:
-            return
+            return 6
         }
+        return judgeNumber
     }
     
     func moveImageView(direction:String) -> Int {

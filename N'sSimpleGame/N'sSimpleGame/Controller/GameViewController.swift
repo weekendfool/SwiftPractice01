@@ -15,13 +15,21 @@ class GameViewController: UIViewController {
     let swipeAction = SwipeAction()
     let record = Record()
     let image = Image()
-
+    let alert = Alert()
+    
+    //スワイプを検知するゾーン
+    @IBOutlet weak var swipeImageView: UIImageView!
+    //問題表示ゾーン
+    @IBOutlet weak var problemImageView: UIImageView!
+    //残り時間表示ラベル
+    @IBOutlet weak var timeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //ゲーム開始のアラートを出す
-        game.upStartAlert()
+        alert.upStartAlert()
         //スワイプの検知実装
-        swipeAction.setSwipeAction()
+        swipeAction.setSwipeAction(targetImageView: swipeImageView)
     }
     //ゲームの開始
     func doGame() {
@@ -30,18 +38,21 @@ class GameViewController: UIViewController {
         //残り時間を保持
         let lastTime = countTimer.doTimer(setTime: 60)
         //ゲームの動きだし
-        while 0 <= lastTime {
-            //正誤判定
-            var judge = game.judge(selectDirection: <#T##Int#>)
-            //問題に表示するイメージを設定
-            if judge
-            let view = game.DisplayView() as! UIImage
+        var directionNumber = swipeAction.setSwipeAction(targetImageView: swipeImageView)
+        //正誤判定
+        var judge = game.judge(selectDirection: directionNumber)
+        //問題に表示するイメージを設定
+    
+        let view = game.DisplayView() as! UIImage
         }
         //操作
         
     }
     //ゲームのカウント
+    
     //ゲームの終了のアラートを出す
+    
+    
 
     
 

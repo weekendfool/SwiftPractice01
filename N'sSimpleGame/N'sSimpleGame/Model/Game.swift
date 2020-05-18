@@ -122,9 +122,9 @@ class Gamge: UIViewController {
         default:
             return false
         }
-        let selectDirection1 = selectDirection as! Int
+        let selectDirection1 = selectDirection as! SwipeAction.swipeActionDirection
         //選んだ答えと正解を比較
-        if enumNumber == selectDirection1 {
+        if enumNumber == selectDirection1.rawValue {
             judgeFlag = true
         } else {
             judgeFlag = false

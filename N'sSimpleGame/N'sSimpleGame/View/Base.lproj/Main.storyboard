@@ -31,6 +31,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="start"/>
+                                <connections>
+                                    <segue destination="JQK-eu-NZ0" kind="presentation" modalPresentationStyle="fullScreen" id="w0r-R1-E49"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -170,6 +173,9 @@
             <point key="canvasLocation" x="1262" y="829"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="w0r-R1-E49"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="main" width="500" height="500"/>
     </resources>

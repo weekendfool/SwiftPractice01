@@ -31,6 +31,10 @@ class GameViewController: UIViewController {
         alert.upStartAlert()
         //スワイプの検知実装
         directionNumber = swipeAction.setSwipeAction(targetImageView: swipeImageView)
+        countTimer.startTimer()
+        countTimer.doTimer(setTime: 60)
+        viewTimerLabel()
+//        doGame()
     }
     //ゲームの開始
     func doGame() {
@@ -64,7 +68,15 @@ class GameViewController: UIViewController {
     
     //ゲームのカウント
     func viewTimerLabel() {
-        
+        //タイマー開始
+        var time = countTimer.startTimer()
+        //残り時間を保持
+        let lastTime = countTimer.doTimer(setTime: 60)
+        //残り時間の表示
+        timeLabel.text = "残り時間\(lastTime)秒"
+        //ゲームの動きだし
+        //問題に表示するイメージを設定
+        let view = game.DisplayView() as! UIImage
     }
     
     //ゲームの終了のアラートを出す

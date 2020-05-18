@@ -122,8 +122,9 @@ class Gamge: UIViewController {
         default:
             return false
         }
+        let selectDirection1 = selectDirection as! Int
         //選んだ答えと正解を比較
-        if enumNumber == selectDirection {
+        if enumNumber == selectDirection1 {
             judgeFlag = true
         } else {
             judgeFlag = false

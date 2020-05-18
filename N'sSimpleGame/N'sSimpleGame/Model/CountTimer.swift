@@ -21,7 +21,7 @@ class CountTimer {
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CountTimer.doTimer), userInfo: nil, repeats: true)
     }
     //1秒毎の処理（設定時間を引数にする）
-    @objc func doTimer(setTime:Int) -> Int{
+    @objc func doTimer(setTime:Int) -> Int {
         //時間を1秒おきに加算
         countTimer += 1
         //残り時間の計算
@@ -29,14 +29,19 @@ class CountTimer {
         //残り時間が0になったときの処理
         stopTimer(remainingTime: remainingTime)
         //残り時間を返す
+//        let tringRemainingTime = String(remainingTime)
         return remainingTime
     }
     
-    func stopTimer(remainingTime:Int) {
+    func stopTimer(remainingTime:Int) -> Bool{
         //残り時間が0になったときの処理
         if remainingTime == 0 {
             //タイマーを停止する
             self.timer.invalidate()
+        return true
+        } else {
+            return false
         }
+        
     }
 }

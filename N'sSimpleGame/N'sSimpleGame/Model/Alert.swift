@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Alert {
+class Alert:UIViewController {
     
     //最初のアラートを表示する
     func upStartAlert() {

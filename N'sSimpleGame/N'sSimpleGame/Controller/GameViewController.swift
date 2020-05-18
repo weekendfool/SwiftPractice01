@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     let image = Image()
     let alert = Alert()
     
+    var directionNumber: Any = ""
     //スワイプを検知するゾーン
     @IBOutlet weak var swipeImageView: UIImageView!
     //問題表示ゾーン
@@ -29,26 +30,42 @@ class GameViewController: UIViewController {
         //ゲーム開始のアラートを出す
         alert.upStartAlert()
         //スワイプの検知実装
-        swipeAction.setSwipeAction(targetImageView: swipeImageView)
+        directionNumber = swipeAction.setSwipeAction(targetImageView: swipeImageView)
     }
     //ゲームの開始
     func doGame() {
+        let startFlag = game.startGame().startFlag
+        let numberOfCorrectAnswers = game.startGame().numberOfCorrectAnswers
+        let numberOfIncorrectAnswers = game.startGame().numberOfIncorrectAnswers
         //タイマー開始
         var time = countTimer.startTimer()
         //残り時間を保持
         let lastTime = countTimer.doTimer(setTime: 60)
+        //残り時間の表示
+        timeLabel.text = "残り時間\(lastTime)秒"
         //ゲームの動きだし
-        var directionNumber = swipeAction.setSwipeAction(targetImageView: swipeImageView)
-        //正誤判定
-        var judge = game.judge(selectDirection: directionNumber)
         //問題に表示するイメージを設定
-    
         let view = game.DisplayView() as! UIImage
+        //正誤判定
+        let judge = game.judge(selectDirection: directionNumber)
+        //得点カウント
+        var gameNumberOfCorrectAnswers = game.countUp(judgeFlag: judge, InputNumberOfCorrectAnswers: numberOfCorrectAnswers, InputNumberOfIncorrectAnswers: numberOfIncorrectAnswers, startFlag: startFlag).numberOfCorrectAnswers
+        var gameNumberOfIncorrectAnswers = game.countUp(judgeFlag: judge, InputNumberOfCorrectAnswers: numberOfCorrectAnswers, InputNumberOfIncorrectAnswers: numberOfIncorrectAnswers, startFlag: startFlag).numberOfIncorrectAnswers
+        //終了動作
+        let count = countTimer.stopTimer(remainingTime: lastTime)
+        if count {
+            let finishScore = game.finishGame(numberOfCorrectAnswers: gameNumberOfCorrectAnswers, numberOfIncorrectAnswers: gameNumberOfIncorrectAnswers)
+            alert.upFinishAlert(intScore: finishScore)
         }
-        //操作
+        
+        }
+        
+        
+    
+    //ゲームのカウント
+    func viewTimerLabel() {
         
     }
-    //ゲームのカウント
     
     //ゲームの終了のアラートを出す
     

@@ -18,9 +18,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        timer.startTimer()
+//        let text = timer.doTimer(setTime: 5)
+//        timerLabel.text = "\(text)"
+//            timer.stopTimer(remainingTime: text)
+        
     }
 
     @IBAction func timerActionButton(_ sender: Any) {
+        //タイマーの実行
+        
+        let text = timer.doTimer(setTime: 5)
+            timerLabel.text = "\(text)"
+        print("&&&&&&&&&&&&&&&&&&&&&6")
+        
     }
     
 }

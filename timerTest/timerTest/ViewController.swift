@@ -13,12 +13,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     //インスタンス作成
-    var timer = CountTimer()
+//    var timer = CountTimer()
+    //経過時間をカウントアップするための変数
+       var countTimer = 0
+       //設定時間の変数
+       var setTime = 0
+       //timerのインスタンス
+       var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        timer.startTimer()
+        startTimer()
 //        let text = timer.doTimer(setTime: 5)
 //        timerLabel.text = "\(text)"
 //            timer.stopTimer(remainingTime: text)
@@ -28,8 +34,8 @@ class ViewController: UIViewController {
     @IBAction func timerActionButton(_ sender: Any) {
         //タイマーの実行
         
-        let text = timer.doTimer(setTime: 5)
-            timerLabel.text = "\(text)"
+//        let text = timer.doTimer(setTime: 5)
+//            timerLabel.text = "\(text)"
         print("&&&&&&&&&&&&&&&&&&&&&6")
         
     }
@@ -37,7 +43,7 @@ class ViewController: UIViewController {
     func startTimer() {
             //タイマーを1秒おきに起動
             //タイマーを起動するためだけに一度だけ起動
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CountTimer.doTimer), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CountTimer.doTimer), userInfo: nil, repeats: true)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
         //1秒毎の処理（設定時間を引数にする）
@@ -69,7 +75,7 @@ class ViewController: UIViewController {
             }
             
         }
-    }
+    
 
     
 }

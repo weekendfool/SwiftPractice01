@@ -25,9 +25,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         startTimer()
-//        let text = timer.doTimer(setTime: 5)
+        
 //        timerLabel.text = "\(text)"
 //            timer.stopTimer(remainingTime: text)
+//        stopTimer(remainingTime: <#T##Int#>)
         
     }
 
@@ -48,13 +49,13 @@ class ViewController: UIViewController {
         }
         //1秒毎の処理（設定時間を引数にする）
         //よばれ続ける
-        @objc func doTimer(setTime:Int) -> Int {
+        @objc func doTimer() -> Int {
             //時間を1秒おきに加算
             countTimer += 1
             //残り時間の計算
             let remainingTime = setTime - countTimer
             //残り時間が0になったときの処理
-    //        stopTimer(remainingTime: remainingTime)
+            stopTimer(remainingTime: remainingTime)
             //残り時間を返す
     //        let tringRemainingTime = String(remainingTime)
             print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%")

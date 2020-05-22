@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             let archiveData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)
             userDefaults.set(archiveData, forKey: "data")
             userDefaults.synchronize()
-        }
+        
         
         if let storedData = userDefaults.object(forKey: "data") as? Data {
             if let unachivedData = try NSKeyedUnarchiver.unarchivedObject(ofClass: MyData.self, from: storedData) {
@@ -35,10 +35,10 @@ class ViewController: UIViewController {
         
         } catch {
         print("エラー \(error)")
+    
     }
-    }
-
-
+        }
+        }
     @IBAction func buttonAction(_ sender: Any) {
         // userdefaultのインスタンス作成
         let userDefaults = UserDefaults.standard

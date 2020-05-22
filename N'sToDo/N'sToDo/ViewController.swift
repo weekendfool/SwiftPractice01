@@ -21,11 +21,17 @@ class ViewController: UIViewController {
             //もし値があったなら表示
             testLabel.text = value
         } else {
-            print(value(forKey: "text"))
+            print("#################")
         }
     }
 
     @IBAction func buttonAction(_ sender: Any) {
+        // userdefaultのインスタンス作成
+        let userDefaults = UserDefaults.standard
+        //保存する
+        userDefaults.set(testLabel.text, forKey: "text")
+        //UserDefaults値の保存を明示的にする
+        userDefaults.synchronize()
     }
      
 }

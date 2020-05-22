@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MyData: NSObject, NSCoding {
+class MyData: NSObject, NSSecureCoding {
     
     static var supportsSecureCoding: Bool {
         return true
@@ -17,14 +17,15 @@ class MyData: NSObject, NSCoding {
     var valueString: String?
     
     override init() {
+        
     }
     
-    func encode(with coder: NSCoder) {
-        coder.encode(valueString, forKey: "valueString")
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(valueString, forKey: "valueString")
     }
     
-    required init?(coder: NSCoder) {
-        valueString = coder.decodeObject(forKey: "valueString") as? String
+    required init?(coder aDecoder: NSCoder) {
+        valueString = aDecoder.decodeObject(forKey: "valueString") as? String
     }
     
 }

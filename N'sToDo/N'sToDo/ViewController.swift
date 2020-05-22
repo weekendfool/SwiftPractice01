@@ -20,18 +20,30 @@ class ViewController: UIViewController {
         let data = MyData()
         //MyDataのプロパティに値を保存
         data.valueString = "test"
-        //値の保存
-        userDefaults.set(data, forKey: "data")
-        //UserDefaults値の保存を明示的にする
-        userDefaults.synchronize()
+        do {
+            let archiveData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)
+            userDefaults.set(archiveData, forKey: "data")
+            userDefaults.synchronize()
+        }
         
+        if let storedData = userDefaults.object(forKey: "data") as? Data {
+            if let unachivedData = try NSKeyedUnarchiver.unarchivedObject(ofClass: MyData.self, from: storedData) {
+                if let valueString = unachivedData.valueString {
+                    print("デシリアライズデータ：" +  valueString)
+                }
+            }
+        
+        } catch {
+        print("エラー \(error)")
     }
+    }
+
 
     @IBAction func buttonAction(_ sender: Any) {
         // userdefaultのインスタンス作成
         let userDefaults = UserDefaults.standard
         //保存する
-        userDefaults.set(testLabel.text, forKey: "text")
+        userDefaults.set(testLabel.text, forKey: "data")
         //UserDefaults値の保存を明示的にする
         userDefaults.synchronize()
     }

@@ -16,13 +16,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // userdefaultのインスタンス作成
         let userDefaults = UserDefaults.standard
-        //userDefaultsに値が入っているかの確認
-        if let value = userDefaults.string(forKey: "text") {
-            //もし値があったなら表示
-            testLabel.text = value
-        } else {
-            print("#################")
-        }
+        //MyDataのインスタンス作成
+        let data = MyData()
+        //MyDataのプロパティに値を保存
+        data.valueString = "test"
+        //値の保存
+        userDefaults.set(data, forKey: "data")
+        //UserDefaults値の保存を明示的にする
+        userDefaults.synchronize()
+        
     }
 
     @IBAction func buttonAction(_ sender: Any) {

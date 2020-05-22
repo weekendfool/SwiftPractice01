@@ -10,11 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var testLabel: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // userdefaultのインスタンス作成
+        let userDefaults = UserDefaults.standard
+        //userDefaultsに値が入っているかの確認
+        if let value = userDefaults.string(forKey: "text") {
+            //もし値があったなら表示
+            testLabel.text = value
+        } else {
+            print(value(forKey: "text"))
+        }
     }
 
-
+    @IBAction func buttonAction(_ sender: Any) {
+    }
+     
 }
 
